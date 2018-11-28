@@ -58,7 +58,7 @@ public class ProdutoDAO {
 
 	public Produto obter(Long id) {
 		Produto produto = null;
-		String sql = "select (id,name, status, email, description) where id=?";
+		String sql = "select (id, name, status, email, description) where id=?";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setLong(1, id);
@@ -96,10 +96,10 @@ public class ProdutoDAO {
 		}
 	}
 
-	public void remove(Produto produto) {
+	public void remove(Long id) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement("delete from produto where id=?");
-			stmt.setLong(1, produto.getId());
+			stmt.setLong(1, id);
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
